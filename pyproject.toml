@@ -1,6 +1,6 @@
 [project]
 name = "lunchmoney-mcp"
-version = "0.1.3"
+version = "0.1.4"
 description = "MCP server for Lunch Money API"
 authors = [
     {name = "Assistant", email = "assistant@example.com"}

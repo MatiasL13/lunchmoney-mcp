@@ -27,11 +27,13 @@ server = Server("lunchmoney-mcp")
 API_BASE_URL = "https://dev.lunchmoney.app"
 ACCESS_TOKEN = os.getenv("LUNCHMONEY_ACCESS_TOKEN")
 
-if not ACCESS_TOKEN:
-    import sys
-    print("Error: LUNCHMONEY_ACCESS_TOKEN environment variable is required", file=sys.stderr)
-    print("Get your token from: https://my.lunchmoney.app/developers", file=sys.stderr)
-    sys.exit(1)
+def validate_access_token():
+    """Validate that the ACCESS_TOKEN is available"""
+    if not ACCESS_TOKEN:
+        import sys
+        print("Error: LUNCHMONEY_ACCESS_TOKEN environment variable is required", file=sys.stderr)
+        print("Get your token from: https://my.lunchmoney.app/developers", file=sys.stderr)
+        sys.exit(1)
 
 # HTTP client configuration - removed get_http_client() function as it caused async context manager issues
 
@@ -878,6 +880,9 @@ async def async_main():
             from . import __version__
             print(f"lunchmoney-mcp {__version__}")
             return
+    
+    # Validate access token before starting the server
+    validate_access_token()
     
     # Start the MCP server
     async with stdio_server() as (read_stream, write_stream):
