@@ -155,10 +155,13 @@ QUICK_START.md
 DEBUG_*.md
 README_DEBUG.md
 SUMMARY.md
+RESUMEN_FINAL.md
 
 # Final fix scripts (temporary)
 FINAL_*.py
 *_FIX.py
+FIX_*.py
+*_WINDOWS.py
 
 # Personal configuration files (should not be in git)
 claude_desktop_config.json
