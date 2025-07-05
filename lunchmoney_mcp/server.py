@@ -33,17 +33,7 @@ if not ACCESS_TOKEN:
     print("Get your token from: https://my.lunchmoney.app/developers", file=sys.stderr)
     sys.exit(1)
 
-# HTTP client configuration
-async def get_http_client() -> httpx.AsyncClient:
-    """Get configured HTTP client"""
-    return httpx.AsyncClient(
-        base_url=API_BASE_URL,
-        headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN}",
-            "Content-Type": "application/json",
-        },
-        timeout=30.0,
-    )
+# HTTP client configuration - removed get_http_client() function as it caused async context manager issues
 
 # Pydantic models for request/response validation
 class UserResponse(BaseModel):
@@ -724,7 +714,14 @@ async def list_tools() -> List[Tool]:
 async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
     """Handle tool calls"""
     
-    async with get_http_client() as client:
+    async with httpx.AsyncClient(
+        base_url=API_BASE_URL,
+        headers={
+            "Authorization": f"Bearer {ACCESS_TOKEN}",
+            "Content-Type": "application/json",
+        },
+        timeout=30.0,
+    ) as client:
         try:
             if name == "get_user":
                 response = await client.get("/v1/me")
@@ -855,8 +852,8 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> List[TextContent]:
         except Exception as e:
             return [TextContent(type="text", text=f"Error: {str(e)}")]
 
-async def main():
-    """Main server entry point"""
+async def async_main():
+    """Main server entry point (async)"""
     import sys
     
     # Handle command line arguments
@@ -875,7 +872,7 @@ async def main():
             print("  LUNCHMONEY_ACCESS_TOKEN          # Your Lunch Money API token")
             print("                                   # Get from: https://my.lunchmoney.app/developers")
             print()
-            print("Documentation: https://github.com/yourusername/lunchmoney-mcp")
+            print("Documentation: https://github.com/MatiasL13/lunchmoney-mcp")
             return
         elif sys.argv[1] in ['--version', '-v']:
             from . import __version__
@@ -890,5 +887,9 @@ async def main():
             server.create_initialization_options()
         )
 
+def main():
+    """Synchronous entry point for command line"""
+    asyncio.run(async_main())
+
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    main() 

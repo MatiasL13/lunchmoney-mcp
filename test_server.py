@@ -4,15 +4,26 @@
 import os
 import asyncio
 import json
-from lunchmoney_mcp.server import get_http_client
+import httpx
 from dotenv import load_dotenv
 
 load_dotenv()
 
+# Configuration
+API_BASE_URL = "https://dev.lunchmoney.app"
+ACCESS_TOKEN = os.getenv("LUNCHMONEY_ACCESS_TOKEN")
+
 async def test_connection():
     """Test basic connectivity to Lunch Money API"""
     try:
-        async with get_http_client() as client:
+        async with httpx.AsyncClient(
+            base_url=API_BASE_URL,
+            headers={
+                "Authorization": f"Bearer {ACCESS_TOKEN}",
+                "Content-Type": "application/json",
+            },
+            timeout=30.0,
+        ) as client:
             response = await client.get("/v1/me")
             response.raise_for_status()
             
@@ -29,7 +40,14 @@ async def test_connection():
 async def test_categories():
     """Test getting categories"""
     try:
-        async with get_http_client() as client:
+        async with httpx.AsyncClient(
+            base_url=API_BASE_URL,
+            headers={
+                "Authorization": f"Bearer {ACCESS_TOKEN}",
+                "Content-Type": "application/json",
+            },
+            timeout=30.0,
+        ) as client:
             response = await client.get("/v1/categories")
             response.raise_for_status()
             
@@ -46,7 +64,14 @@ async def test_categories():
 async def test_transactions():
     """Test getting transactions"""
     try:
-        async with get_http_client() as client:
+        async with httpx.AsyncClient(
+            base_url=API_BASE_URL,
+            headers={
+                "Authorization": f"Bearer {ACCESS_TOKEN}",
+                "Content-Type": "application/json",
+            },
+            timeout=30.0,
+        ) as client:
             response = await client.get("/v1/transactions", params={"limit": 5})
             response.raise_for_status()
             

@@ -70,14 +70,14 @@ python install.py
 
 ### Option B: Development Installation
 ```bash
-git clone https://github.com/yourusername/lunchmoney-mcp
+git clone https://github.com/MatiasL13/lunchmoney-mcp
 cd lunchmoney-mcp
 pip install -e .
 ```
 
 ### Option C: From Source
 ```bash
-git clone https://github.com/yourusername/lunchmoney-mcp
+git clone https://github.com/MatiasL13/lunchmoney-mcp
 cd lunchmoney-mcp
 pip install -r requirements.txt
 python -m lunchmoney_mcp.server

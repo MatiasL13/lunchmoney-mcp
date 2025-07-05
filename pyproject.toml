@@ -1,13 +1,13 @@
 [project]
 name = "lunchmoney-mcp"
-version = "0.1.0"
+version = "0.1.2"
 description = "MCP server for Lunch Money API"
 authors = [
     {name = "Assistant", email = "assistant@example.com"}
 ]
 dependencies = [
-    "mcp>=1.0.0",
-    "httpx>=0.24.0",
+    "mcp[cli]>=1.0.0",
+    "httpx>=0.24.0", 
     "pydantic>=2.0.0",
     "python-dotenv>=1.0.0"
 ]

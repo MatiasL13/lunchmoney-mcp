@@ -128,4 +128,41 @@ dmypy.json
 .DS_Store
 Thumbs.db 
 
+# Development and testing files (generated during MCP development)
+# ==============================================================
+
+# Test scripts
+test_*.py
+debug_*.py
+fix_*.py
+install_*.py
+simple_*.py
+windows_*.py
+quick_*.py
+run_*.py
+check_*.py
+publish.py
+
+# Temporary documentation files
+SOLVED.md
+START_HERE.txt
+ASYNC_FIX.md
+DEPENDENCY_PROBLEM_SOLVED.md
+INSTRUCCIONES_PARA_OTRA_MAQUINA.md
+SOLUTION.md
+QUICK_FIX.txt
+QUICK_START.md
+DEBUG_*.md
+README_DEBUG.md
 SUMMARY.md
+
+# Final fix scripts (temporary)
+FINAL_*.py
+*_FIX.py
+
+# Personal configuration files (should not be in git)
+claude_desktop_config.json
+
+# Generated examples that contain API keys or personal data
+*_config.json
+!claude_desktop_config_example.json
