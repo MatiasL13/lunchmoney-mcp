@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "lunchmoney": {
+      "command": "lunchmoney-mcp",
+      "env": {
+        "LUNCHMONEY_ACCESS_TOKEN": "your_lunch_money_token_here"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem@latest",
+        "/path/to/allowed/directory"
+      ]
+    }
+  }
+} 
