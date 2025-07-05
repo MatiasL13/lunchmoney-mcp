@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "lunchmoney": {
+      "command": "lunchmoney-mcp",
+      "env": {
+        "LUNCHMONEY_ACCESS_TOKEN": "replace_with_your_token"
+      }
+    }
+  }
+} 
